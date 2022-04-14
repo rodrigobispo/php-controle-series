@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Episodio;
 use App\Http\Requests\SeriesFormRequest;
 use App\Serie;
 use App\Services\CriadorDeSerie;
 use App\Services\RemovedorDeSerie;
-use App\Temporada;
 use Illuminate\Http\Request;
 
 class SeriesController extends Controller
@@ -50,5 +48,13 @@ class SeriesController extends Controller
         $request->session()->flash('mensagem', "Série $nomeSerie removida com sucesso.");
 
         return redirect()->route('listar_series');
+    }
+
+    public function editaNome(int $serieId, Request $request)
+    {
+        $novoNome = $request->nome;
+        $serie = Serie::find($serieId);
+        $serie->nome = $novoNome;
+        $serie->save();
     }
 }
