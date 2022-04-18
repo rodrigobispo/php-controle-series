@@ -35,6 +35,11 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
+            // Seria aplicado em todo o sistema, desconsiderando as permissoes 
+            // em web.php , passando apenas pela condição 
+            // da classe Autenticador implementada
+            // \App\Http\Middleware\Autenticador::class,
         ],
 
         'api' => [
@@ -60,6 +65,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'autenticador' => \App\Http\Middleware\Autenticador::class,
     ];
 
     /**
